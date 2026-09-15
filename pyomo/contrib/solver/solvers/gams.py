@@ -354,6 +354,9 @@ class GAMS(SolverBase):
             # handled tee and logfile based on the length of list and
             # string respectively
             command.append(self._log_levels[(bool(config.tee), bool(config.logfile))])
+            if config.logfile:
+                # Absolute, because GAMS runs with curdir set to dname.
+                command.append("lf=" + os.path.abspath(config.logfile))
 
             ostreams = [StringIO()]
             if config.tee:
