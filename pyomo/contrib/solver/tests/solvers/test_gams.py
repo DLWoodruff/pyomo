@@ -437,7 +437,8 @@ class TestGAMS(unittest.TestCase):
             finally:
                 os.chdir(cwd)
             self.assertEqual(result.solution_status, SolutionStatus.optimal)
-            self.assertGreater(os.path.getsize(os.path.join(dname, 'relative.log')), 0)
+            logfile = os.path.join(dname, 'relative.log')
+            self.assertGreater(os.path.getsize(logfile), 0)
 
     @unittest.skipIf(not gams.gdxcc_available, "'gdx' requires the gdx/gdxcc module")
     def test_gams_solve_noload_gdx(self):
